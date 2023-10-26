@@ -1,0 +1,42 @@
+const button = document.querySelectorAll(".drum");
+
+for(let i = 0; i < button.length; i++){
+    button[i].addEventListener("click", clickToPlay);
+}
+
+function clickToPlay(){
+    let buttonInnerHTML = this.innerHTML;
+    playSound(buttonInnerHTML);
+}
+
+document.addEventListener("keydown", pressToPlay);
+
+function pressToPlay(event){            // The event (not a keyword) here is used to obtain info about the keypress
+    playSound(event.key);               // event.key gives us the key letter which was pressed
+}                                       // NOTE THAT WE CAN WRITE ANYTHING IN PLACE OF EVENT. IT IS NOT A KEYWORD
+
+function playSound(alphabet){
+    switch(alphabet){
+        case 'w':
+            new Audio("./sounds/tom-1.mp3").play();
+            break;
+        case 'a':
+            new Audio("./sounds/tom-2.mp3").play();
+            break;
+        case 's':
+            new Audio("./sounds/tom-3.mp3").play();
+            break;
+        case 'd':
+            new Audio("./sounds/tom-4.mp3").play();
+            break;
+        case 'j':
+            new Audio("./sounds/crash.mp3").play();
+            break;
+        case 'k':
+            new Audio("./sounds/snare.mp3").play();
+            break;
+        case 'l':
+            new Audio("./sounds/kick-bass.mp3").play();
+            break;
+    }
+}
