@@ -9,11 +9,14 @@ document.addEventListener("keydown", pressToPlay);     // To look for keypresses
 function clickToPlay(){
     let buttonInnerHTML = this.innerHTML;
     playSound(buttonInnerHTML);
+    playAnimation(buttonInnerHTML);
 }
 
-function pressToPlay(event){            // The event (not a keyword) here is used to obtain info about the keypress
-    playSound(event.key);               // event.key gives us the key letter which was pressed
-}                                       // NOTE THAT WE CAN WRITE ANYTHING IN PLACE OF EVENT. IT IS NOT A KEYWORD
+function pressToPlay(event){            // The event (not a keyword) here is used to obtain info about the event (can e anything a click or a keypress or anything it will provide info about that)
+    playSound(event.key);               // event.key gives us the key letter which was pressed                                    
+                                        // NOTE THAT WE CAN WRITE ANYTHING IN PLACE OF EVENT. IT IS NOT A KEYWORD
+    playAnimation(event.key);
+}
 
 function playSound(alphabet){
     switch(alphabet){
@@ -39,4 +42,12 @@ function playSound(alphabet){
             new Audio("./sounds/kick-bass.mp3").play();
             break;
     }
+}
+
+function playAnimation(alphabet){
+    let activeButton = document.querySelector("." + alphabet);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){          // Adds a time after which the funciton will be executed
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
